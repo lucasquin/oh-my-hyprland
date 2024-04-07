@@ -1,0 +1,56 @@
+@define-color background-color #282a36;
+@define-color text-color #f8f8f2;
+@define-color primary-color #bd93f9;
+@define-color secondary-color #ff79c6;
+@define-color warning-color #ffb86c;
+@define-color error-color #ff5555;
+@define-color sucess-color #50fA7b;
+@define-color inactive-color #6272a4;
+
+* {
+    border: none;
+    font-size: 18px;
+    min-height: 0;
+}
+
+window#waybar {
+    background: rgba(0, 0, 0, 0.5);
+    color: @text-color;
+}
+
+#workspaces button {
+    color: @inactive-color;
+    min-width: 30px;
+    border: 2px solid transparent;
+}
+
+#workspaces button.focused,
+#workspaces button.active {
+    color: @text-color;
+    min-width: 30px;
+    background-color: @primary-color;
+    border-radius: 4px 4px 0 0;
+    transition: all 0.5s ease
+}
+
+#taskbar button {
+    box-shadow: none;
+	text-shadow: none;
+    border-radius: 0px;
+}
+
+#battery {
+    font-size: 26px;
+}
+
+#taskbar button.active {
+    border-radius: 4px 4px 0 0;
+    background: @primary-color;
+    transition: all 0.5s ease
+}
+
+#taskbar button:hover {
+    border-radius: 4px 4px 0 0;
+    background: @primary-color;
+    transition: all 1s ease
+}

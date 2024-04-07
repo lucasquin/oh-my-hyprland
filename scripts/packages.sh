@@ -1,0 +1,5 @@
+packages=(
+	"zsh"
+	"hyprland"
+	"waybar"
+)

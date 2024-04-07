@@ -1,0 +1,99 @@
+{
+    "layer": "top",
+    "height": 34,
+    "spacing": 34,
+    "modules-left": [
+        "hyprland/workspaces",
+        "hyprland/submap"
+    ],
+    "modules-center": [
+        "hyprland/window"
+    ],
+    "modules-right": [
+        "wlr/taskbar",
+        "battery",
+        "network",
+        "custom/settings",
+        "clock"
+    ],
+    // Left Modules
+    "hyprland/workspaces": {
+        "format": "{icon}",
+        "format-icons": {
+            "1": "1",
+            "2": "2",
+            "3": "3",
+            "4": "4",
+            "5": "5",
+            "6": "6",
+            "7": "7",
+            "8": "8",
+            "9": "9",
+            "default": "1"
+        },
+        "on-click": "activate"
+    },
+    "hyprland/submap": {
+        "format": "{}",
+        "tooltip": false
+    },
+    // Center Modules
+    "hyprland/window": {
+        "format": "{:.40}",
+        "separate-outputs": false
+    },
+    // Right modules
+    "wlr/taskbar": {
+        "format": "{icon}",
+        "rotate": 0,
+        "icon-size": 18,
+        "spacing": 0,
+        "tooltip-format": "{title}",
+        "on-click": "activate",
+        "on-click-middle": "close",
+        "ignore-list": [
+            "Alacritty"
+        ],
+        "app_ids-mapping": {
+            "firefoxdeveloperedition": "firefox-developer-edition"
+        }
+    },
+    "battery": {
+        "states": {
+            "good": 80,
+            "warning": 30,
+            "critical": 20
+        },
+        "format": "{icon}",
+        "rotate": 270,
+        "format-charging": "󰂄",
+        "format-plugged": "󰂄",
+        "format-icons": [
+            "󰂎",
+            "󰁺",
+            "󰁻",
+            "󰁼",
+            "󰁽",
+            "󰁾",
+            "󰁿",
+            "󰂀",
+            "󰂁",
+            "󰂂",
+            "󰁹"
+        ]
+    },
+    "network": {
+        "format-wifi": " ",
+        "format-ethernet": "󰈁",
+        "format-disconnected": "Disconnected ⚠ "
+    },
+    "custom/settings": {
+        "format": " ",
+        "on-click": ""
+    },
+    "clock": {
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "format": "{:%a %b %d %I:%M %p}  ",
+        "format-alt": "{:%Y-%m-%d}  "
+    }
+}
