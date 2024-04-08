@@ -38,10 +38,10 @@ install_packages() {
 	done
 
 	if [ ${#package_list[@]} -ne 0 ]; then
-		echo "${GREEN}==> Installing packages..."
+		echo "${GREEN}==> Installing packages...${NC}"
 		paru -S "${package_list[@]}"
 	else
-		echo "${YELLOW}==> All specified packages are already installed or were not found."
+		echo -e "${YELLOW}==> All specified packages are already installed or were not found.${NC}"
 	fi
 
 	if [ ${#not_installed_packages[@]} -ne 0 ]; then
