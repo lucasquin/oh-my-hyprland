@@ -22,7 +22,7 @@ install_paru() {
 install_packages() {
 	local -a package_list=()
 	local -a not_installed_packages=()
-	chmod +x ./packages.sh
+
 	source ./packages.sh
 
 	for pkg in "${packages[@]}"; do
