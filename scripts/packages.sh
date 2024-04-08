@@ -3,4 +3,5 @@ packages=(
 	"zsh"
 	"hyprland"
 	"waybar"
+	"neovim"
 )
