@@ -8,14 +8,14 @@ NC='\033[0m' # No Color
 
 install_paru() {
 	if ! command -v paru &>/dev/null; then
-		echo -e "${GREEN}Installing:${NC} paru"
+		echo -e "${GREEN}==> Installing:${NC} paru"
 		sudo pacman -S --needed base-devel
 		local clone_dir="$HOME/Clone/paru"
 		git clone https://aur.archlinux.org/paru.git "$clone_dir"
 		cd $clone_dir
 		makepkg -si
 	else
-		echo -e "${YELLOW}Already installed:${NC} paru"
+		echo -e "${YELLOW}==> Already installed:${NC} paru"
 	fi
 }
 
@@ -33,19 +33,19 @@ install_packages() {
 				not_installed_packages+=("$pkg")
 			fi
 		else
-			echo -e "${YELLOW}Already installed:${NC} $pkg"
+			echo -e "${YELLOW}==> Already installed:${NC} $pkg"
 		fi
 	done
 
 	if [ ${#package_list[@]} -ne 0 ]; then
-		echo "Installing packages..."
+		echo "${GREEN}==> Installing packages..."
 		paru -S "${package_list[@]}"
 	else
-		echo "All specified packages are already installed or were not found."
+		echo "${YELLOW}==> All specified packages are already installed or were not found."
 	fi
 
 	if [ ${#not_installed_packages[@]} -ne 0 ]; then
-		echo -e "${RED}The following packages were not found in the repositories and could not be installed:${NC}"
+		echo -e "${RED}==> The following packages were not found in the repositories and could not be installed:${NC}"
 		printf '%s\n' "${not_installed_packages[@]}"
 	fi
 }
