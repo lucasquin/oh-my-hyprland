@@ -1,58 +1,46 @@
 #!/bin/bash
 
-# Define colors for output
-RED='\033[0;31m'
-GREEN='\033[0;32m'
-YELLOW='\033[0;33m'
-NC='\033[0m' # No Color
-
-install_paru() {
-	if ! command -v paru &>/dev/null; then
-		echo -e "${GREEN}==> Installing:${NC} paru"
-		sudo pacman -S --needed base-devel
-		local clone_dir="$HOME/Clone/paru"
-		git clone https://aur.archlinux.org/paru.git "$clone_dir"
-		cd $clone_dir
-		makepkg -si
-	else
-		echo -e "${YELLOW}==> Already installed:${NC} paru"
-	fi
-}
-
-install_packages() {
-	local -a package_list=()
-	local -a not_installed_packages=()
-
-	source ./packages.sh
-
-	for pkg in "${packages[@]}"; do
-		if ! paru -Qi "$pkg" &>/dev/null; then
-			if paru -Si "$pkg" &>/dev/null; then
-				package_list+=("$pkg")
-			else
-				not_installed_packages+=("$pkg")
-			fi
-		else
-			echo -e "${YELLOW}==> Already installed:${NC} $pkg"
-		fi
-	done
-
-	if [ ${#package_list[@]} -ne 0 ]; then
-		echo "${GREEN}==> Installing packages...${NC}"
-		paru -S "${package_list[@]}"
-	else
-		echo -e "${YELLOW}==> All specified packages are already installed or were not found.${NC}"
-	fi
-
-	if [ ${#not_installed_packages[@]} -ne 0 ]; then
-		echo -e "${RED}==> The following packages were not found in the repositories and could not be installed:${NC}"
-		printf '%s\n' "${not_installed_packages[@]}"
-	fi
-}
+source ./colors.sh
+source ./install_git.sh
+source ./install_paru.sh
+source ./install_packages.sh
+source ./install_fonts.sh
+source ./install_dotfiles.sh
+source ./change_shell.sh
 
 main() {
-	install_paru
-	install_packages
+	log_file="install.log"
+	echo -e "${GREEN}==> Starting installation..."
+
+	install_git 2>&1 | tee -a "$log_file" || {
+		echo -e "${RED}==> Failed to Install:${NC} git"
+		exit 1
+	}
+
+	install_paru 2>&1 | tee -a "$log_file" || {
+		echo -e "${RED}==> Failed to Install:${NC} paru"
+		exit 1
+	}
+
+	install_packages 2>&1 | tee -a "$log_file" || {
+		echo -e "${RED}==> Failed to Install:${NC} packages"
+		exit 1
+	}
+
+	install_fonts 2>&1 | tee -a "$log_file" || {
+		echo -e "${RED}==> Failed to Install:${NC} fonts"
+		exit 1
+	}
+
+	install_dotfiles 2>&1 | tee -a "$log_file" || {
+		echo -e "${RED}==> Failed to Install:${NC} dotfiles"
+		exit 1
+	}
+
+	change_shell 2>&1 | tee -a "$log_file" || {
+		echo -e "${RED}==> Failed to:${NC} change shell"
+		exit 1
+	}
 }
 
 main "$@"
