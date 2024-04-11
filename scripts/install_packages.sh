@@ -6,6 +6,13 @@ packages=(
 	"waybar"
 	"neovim"
 	"vim"
+	"kitty"
+	"wofi"
+	"qt5-wayland"
+	"dunst"
+	"xdg-desktop-portal-hyprland"
+	"qt6-wayland"
+	"dolphin"
 )
 
 install_packages() {
@@ -25,7 +32,7 @@ install_packages() {
 	done
 
 	if [ ${#package_list[@]} -ne 0 ]; then
-		echo "${GREEN}==> Installing packages...${NC}"
+		echo -e "${GREEN}==> Installing packages...${NC}"
 		paru -S "${package_list[@]}"
 	else
 		echo -e "${YELLOW}==> All specified packages are already installed or were not found.${NC}"

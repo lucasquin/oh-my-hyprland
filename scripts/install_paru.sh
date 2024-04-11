@@ -1,4 +1,11 @@
 install_paru() {
+	if ! command -v cargo &>/dev/null; then
+		echo -e "${GREEN}==> Installing:${NC} rust"
+		sudo pacman -S rust
+	else
+		echo -e "${YELLOW}==> Already installed:${NC} rust"
+	fi
+
 	if ! command -v paru &>/dev/null; then
 		echo -e "${GREEN}==> Installing:${NC} paru"
 		sudo pacman -S --needed base-devel
