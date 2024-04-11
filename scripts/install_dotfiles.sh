@@ -15,7 +15,7 @@ install_dotfiles() {
 
 	install_dotfile() {
 		local source_path="${PWD}/${1}"
-		local target_path="${HOME}/${1}"
+		local target_path="${HOME}/$(echo ${1} | sed 's|\.\./configs/||')"
 		local target_dir=$(dirname "${target_path}")
 
 		if [ ! -d "${target_dir}" ]; then
