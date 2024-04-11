@@ -17,6 +17,7 @@ main() {
 		exit 1
 	}
 
+	
 	install_paru 2>&1 | tee -a "$log_file" || {
 		echo -e "${RED}==> Failed to Install:${NC} paru"
 		exit 1
