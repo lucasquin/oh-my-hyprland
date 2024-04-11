@@ -24,7 +24,7 @@ install_dotfiles() {
 		fi
 
 		if [ -e "${target_path}" ] || [ -h "${target_path}" ]; then
-			echo -e "Removing existing item at ${target_path}..."
+			echo -e "${YELLOW}Removing existing item at:${NC} ${target_path}..."
 			rm -rf "${target_path}"
 		fi
 
