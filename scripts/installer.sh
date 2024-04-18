@@ -1,15 +1,18 @@
 #!/bin/bash
 
-source ./colors.sh
-source ./install_git.sh
-source ./install_paru.sh
-source ./install_packages.sh
-source ./install_fonts.sh
-source ./install_dotfiles.sh
-source ./change_shell.sh
+dot=$(pwd)
+
+source ${dot}/colors.sh
+source ${dot}/install_git.sh
+source ${dot}/install_paru.sh
+source ${dot}/install_packages.sh
+source ${dot}/install_fonts.sh
+source ${dot}/install_dotfiles.sh
+source ${dot}/change_shell.sh
 
 main() {
-	log_file="install.log"
+	log_file="oh-my-hyprland.log"
+
 	echo -e "${GREEN}==> Starting installation..."
 
 	install_git 2>&1 | tee -a "$log_file" || {
@@ -17,7 +20,6 @@ main() {
 		exit 1
 	}
 
-	
 	install_paru 2>&1 | tee -a "$log_file" || {
 		echo -e "${RED}==> Failed to Install:${NC} paru"
 		exit 1
