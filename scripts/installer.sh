@@ -18,6 +18,7 @@ main() {
 		exit 1
 	}
 
+	
 	install_paru 2>&1 | tee -a "$log_file" || {
 		echo -e "${error} Failed to Install: paru"
 		exit 1
