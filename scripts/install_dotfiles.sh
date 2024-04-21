@@ -1,38 +1,38 @@
 install_dotfiles() {
 	files=(
-		../configs/.zshrc
-		../configs/.config/hypr
-		../configs/.config/kitty
-		../configs/.config/waybar
-		../configs/.config/wofi
-		../configs/.config/kdeglobals
+		"Clone/oh-my-hyprland/configs/.config/rofi"
+		"Clone/oh-my-hyprland/configs/.config/.zshrc"
+		"Clone/oh-my-hyprland/configs/.config/hypr"
+		"Clone/oh-my-hyprland/configs/.config/kitty"
+		"Clone/oh-my-hyprland/configs/.config/waybar"
+		"Clone/oh-my-hyprland/configs/.config/kdeglobals"
 	)
 
 	if [ ! -d "${HOME}/.config" ]; then
-		echo -e "${GREEN}==> Creating .config folder...${NC}"
-		mkdir "${HOME}/.config"
+		echo -e "${success} Creating .config folder..."
+		mkdir -p "${HOME}/.config"
 	fi
 
 	install_dotfile() {
-		local source_path="${PWD}/${1}"
-		local target_path="${HOME}/$(echo ${1} | sed 's|\.\./configs/||')"
+		local source_path="${HOME}/${1}"
+		local target_path="${HOME}/.config/$(basename "${1}")"
 		local target_dir=$(dirname "${target_path}")
 
 		if [ ! -d "${target_dir}" ]; then
-			echo -e "${GREEN}==> Creating directory for:${NC} ${target_dir}..."
+			echo -e "${success} Creating directory for: ${target_dir}..."
 			mkdir -p "${target_dir}"
 		fi
 
 		if [ -e "${target_path}" ] || [ -h "${target_path}" ]; then
-			echo -e "${YELLOW}Removing existing item at:${NC} ${target_path}..."
+			echo -e "${warning} Removing existing item at: ${target_path}..."
 			rm -rf "${target_path}"
 		fi
 
-		echo -e "${GREEN}==> Creating a new symlink for:${NC} ${1} at ${target_path}"
+		echo -e "${success} Creating a new symlink for: ${source_path} at ${target_path}"
 		if ln -s "${source_path}" "${target_path}"; then
-			echo -e "${GREEN}==> Successfully created symlink for:${NC} ${1}"
+			echo -e "${success} Successfully created symlink for: ${source_path}"
 		else
-			echo -e "${RED}==>Failed to create symlink for:${NC} ${1}"
+			echo -e "${error} Failed to create symlink for: ${source_path}"
 		fi
 	}
 

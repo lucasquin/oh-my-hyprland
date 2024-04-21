@@ -1,34 +1,80 @@
-@define-color white rgba(255, 255, 255, 0.8);
-@define-color black rgba(0, 0, 0, 0.8);
-@define-color background rgba(0, 0, 0, 0.2);
+@define-color background #282A36;
+@define-color background2 #44475A;
+@define-color foreground #F8F8F2;
+@define-color red #800a0a;
 
 * {
-    border: none;
-    font-size: 16px;
-    min-height: 0;
+  border: none;
+  border-radius: 0;
+  font-family: Roboto, Helvetica, Arial, sans-serif;
+  min-height: 0;
+  font-weight: bold;
 }
 
 window#waybar {
-    background: @background;
-    color: @white;
+  font-family: Cantarell, sans-serif;
+  font-size: 12px;
+  color: @foreground;
+  background: @background;
+}
+
+#workspaces {
+  font-size: 13px;
 }
 
 #workspaces button {
-    color: @white;
+  color: @background2;
+  min-width: 0;
 }
 
 #workspaces button.active {
-    color: @black;
-    background-color: @white;
-    transition: all .5s ease;
-    border-radius: 4px;
-    padding: 0 16px;
+  color: @foreground;
 }
 
-#battery {
-    font-size: 24px;
+#workspaces button.urgent {
+  background: @red;
 }
 
 #clock {
-    margin: 0 8px 0 0;
+  margin: 0 8px 0 0;
+}
+
+#network.disconnected {
+  color: @red;
+}
+
+@keyframes blink {
+  80% {
+    background-color: transparent;
+    color: #ff5a5a;
+  }
+
+  90% {
+    background-color: rgba(255, 20, 0, .4);
+    color: #dcdccc;
+  }
+}
+
+#battery.warning:not(.charging) {
+  color: #ff5a5a;
+}
+
+#battery.critical:not(.charging) {
+  color: #ff5a5a;
+  animation-name: blink;
+  animation-duration: 5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+#tray {
+  background-color: @background2;
+  border-radius: 12px 0px 0px 12px;
+  padding: 0 16px;
+}
+
+#clock {
+  background-color: @background2;
+  border-radius: 0px 12px 12px 0px;
+  padding: 0 16px;
 }
