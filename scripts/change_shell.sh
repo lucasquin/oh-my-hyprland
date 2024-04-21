@@ -1,6 +1,6 @@
 change_shell() {
 	if [ "$(basename "${SHELL}")" != "zsh" ]; then
-		echo -e "${GREEN}==> Changing shell to:${NC} Zsh"
+		echo -e "${success} Changing shell to: Zsh"
 		chsh -s /bin/zsh
 	fi
 }

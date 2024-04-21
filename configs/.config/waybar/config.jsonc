@@ -1,21 +1,24 @@
 {
   "layer": "top",
   "height": 30,
-  "spacing": 30,
+  "spacing": 15,
   "modules-left": [
-    "hyprland/workspaces",
-    "hyprland/submap"
+    "clock",
+    "hyprland/workspaces"
   ],
   "modules-center": [
     "hyprland/window"
   ],
   "modules-right": [
-    "tray",
     "wlr/taskbar",
+    "backlight",
+    "cpu",
+    "temperature",
+    "memory",
+    "pulseaudio",
     "battery",
     "network",
-    "custom/settings",
-    "clock"
+    "tray"
   ],
   "hyprland/workspaces": {
     "format": "{icon}",
@@ -33,12 +36,8 @@
     },
     "on-click": "activate"
   },
-  "hyprland/submap": {
-    "format": "{}",
-    "tooltip": false
-  },
   "hyprland/window": {
-    "format": "{:.40}",
+    "format": "{:.60}",
     "separate-outputs": false
   },
   "wlr/taskbar": {
@@ -56,26 +55,20 @@
   },
   "battery": {
     "states": {
-      "good": 80,
+      "good": 90,
       "warning": 30,
-      "critical": 20
+      "critical": 15
     },
-    "format": "{icon}",
-    "rotate": 270,
-    "format-charging": "󰂄",
-    "format-plugged": "󰂄",
+    "format": "{capacity}% {icon}",
+    "format-charging": "{capacity}% ",
+    "format-plugged": "{capacity}% 󰚥 ",
+    "format-alt": "{time} {icon}",
     "format-icons": [
-      "󰂎",
-      "󰁺",
-      "󰁻",
-      "󰁼",
-      "󰁽",
-      "󰁾",
-      "󰁿",
-      "󰂀",
-      "󰂁",
-      "󰂂",
-      "󰁹"
+      "  ",
+      "  ",
+      "  ",
+      "  ",
+      "  "
     ]
   },
   "network": {
@@ -83,13 +76,63 @@
     "format-ethernet": "󰈁",
     "format-disconnected": "Disconnected ⚠ "
   },
-  "custom/settings": {
-    "format": " ",
-    "on-click": ""
-  },
   "clock": {
     "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
     "format": "{:%a %b %d %I:%M %p}  ",
     "format-alt": "{:%Y-%m-%d}  "
+  },
+  "pulseaudio": {
+    "format": "{volume}% {icon}",
+    "format-bluetooth": "{volume}% {icon}",
+    "format-muted": "󰝟 ",
+    "format-icons": {
+      "headphones": " ",
+      "handsfree": " ",
+      "headset": " ",
+      "phone": " ",
+      "portable": " ",
+      "car": " ",
+      "default": [
+        " ",
+        " ",
+        " "
+      ]
+    },
+    "scroll-step": 1,
+    "on-click": "pavucontrol"
+  },
+  "cpu": {
+    "format": "{usage}%  ",
+    "tooltip": false
+  },
+  "memory": {
+    "format": "{}%  "
+  },
+  "temperature": {
+    "critical-threshold": 80,
+    "format": "{temperatureC}°C {icon}",
+    "format-icons": [
+      "",
+      "",
+      ""
+    ]
+  },
+  "tray": {
+    "icon-size": 16,
+    "spacing": 10
+  },
+  "backlight": {
+    "format": "{percent}% {icon}",
+    "format-icons": [
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " "
+    ]
   }
 }

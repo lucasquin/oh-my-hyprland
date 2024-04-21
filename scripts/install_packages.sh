@@ -7,7 +7,7 @@ packages=(
 	"neovim"
 	"vim"
 	"kitty"
-	"wofi"
+	"rofi"
 	"qt5-wayland"
 	"dunst"
 	"xdg-desktop-portal-hyprland"
@@ -27,19 +27,19 @@ install_packages() {
 				not_installed_packages+=("$pkg")
 			fi
 		else
-			echo -e "${YELLOW}==> Already installed:${NC} $pkg"
+			echo -e "${warning} Already installed: $pkg"
 		fi
 	done
 
 	if [ ${#package_list[@]} -ne 0 ]; then
-		echo -e "${GREEN}==> Installing packages...${NC}"
+		echo -e "${success} Installing packages..."
 		paru -S "${package_list[@]}"
 	else
-		echo -e "${YELLOW}==> All specified packages are already installed or were not found.${NC}"
+		echo -e "${warning} All specified packages are already installed or were not found."
 	fi
 
 	if [ ${#not_installed_packages[@]} -ne 0 ]; then
-		echo -e "${RED}==> The following packages were not found in the repositories and could not be installed:${NC}"
+		echo -e "${error} The following packages were not found in the repositories and could not be installed:"
 		printf '%s\n' "${not_installed_packages[@]}"
 	fi
 }

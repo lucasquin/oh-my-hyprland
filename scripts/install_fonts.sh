@@ -1,16 +1,16 @@
 install_fonts() {
-	fonts="../assets/fonts"
+	fonts="~/Clone/oh-my-hyprland/assets/fonts/"
 	fontsDir="${HOME}/.local/share/fonts/"
 
 	if [ ! -d "${local_fonts_dir}" ]; then
-		echo -e "${GREEN}==> Creating fonts directory:${NC} ${fontsDir}"
+		echo -e "${success} Creating fonts directory: ${fontsDir}"
 		mkdir -p "${fontsDir}"
 	fi
 
 	if [ -d "${fonts}" ]; then
-		echo -e "${GREEN}==> Installing fonts${NC}: ${fonts}"
+		echo -e "${success} Installing fonts: ${fonts}"
 		cp -r "${fonts}/"* ${fontsDir}
-		echo -e "${GREEN}==> Updading installed fonts...${NC}"
+		echo -e "${success} Updading installed fonts..."
 		fc-cache -f -v
 	fi
 }

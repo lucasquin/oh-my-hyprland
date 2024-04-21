@@ -1,47 +1,45 @@
 #!/bin/bash
 
-dot=$(pwd)
-
-source ${dot}/colors.sh
-source ${dot}/install_git.sh
-source ${dot}/install_paru.sh
-source ${dot}/install_packages.sh
-source ${dot}/install_fonts.sh
-source ${dot}/install_dotfiles.sh
-source ${dot}/change_shell.sh
+source ~/Clone/oh-my-hyprland/scripts/colors.sh
+source ~/Clone/oh-my-hyprland/scripts/install_git.sh
+source ~/Clone/oh-my-hyprland/scripts/install_paru.sh
+source ~/Clone/oh-my-hyprland/scripts/install_packages.sh
+source ~/Clone/oh-my-hyprland/scripts/install_fonts.sh
+source ~/Clone/oh-my-hyprland/scripts/install_dotfiles.sh
+source ~/Clone/oh-my-hyprland/scripts/change_shell.sh
 
 main() {
 	log_file="oh-my-hyprland.log"
 
-	echo -e "${GREEN}==> Starting installation..."
+	echo -e "${success} Starting installation..."
 
 	install_git 2>&1 | tee -a "$log_file" || {
-		echo -e "${RED}==> Failed to Install:${NC} git"
+		echo -e "${error} Failed to Install: git"
 		exit 1
 	}
 
 	install_paru 2>&1 | tee -a "$log_file" || {
-		echo -e "${RED}==> Failed to Install:${NC} paru"
+		echo -e "${error} Failed to Install: paru"
 		exit 1
 	}
 
 	install_packages 2>&1 | tee -a "$log_file" || {
-		echo -e "${RED}==> Failed to Install:${NC} packages"
+		echo -e "${error} Failed to Install: packages"
 		exit 1
 	}
 
 	install_fonts 2>&1 | tee -a "$log_file" || {
-		echo -e "${RED}==> Failed to Install:${NC} fonts"
+		echo -e "${error} Failed to Install: fonts"
 		exit 1
 	}
 
 	install_dotfiles 2>&1 | tee -a "$log_file" || {
-		echo -e "${RED}==> Failed to Install:${NC} dotfiles"
+		echo -e "${error} Failed to Install: dotfiles"
 		exit 1
 	}
 
 	change_shell 2>&1 | tee -a "$log_file" || {
-		echo -e "${RED}==> Failed to:${NC} change shell"
+		echo -e "${error} Failed to: change shell"
 		exit 1
 	}
 }
