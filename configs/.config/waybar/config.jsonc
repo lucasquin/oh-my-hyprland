@@ -1,13 +1,12 @@
 {
   "layer": "top",
-  "height": 30,
+  "height": 25,
   "spacing": 15,
   "modules-left": [
-    "clock",
     "hyprland/workspaces"
   ],
   "modules-center": [
-    "hyprland/window"
+    "clock"
   ],
   "modules-right": [
     "wlr/taskbar",
@@ -35,10 +34,6 @@
       "default": "1"
     },
     "on-click": "activate"
-  },
-  "hyprland/window": {
-    "format": "{:.60}",
-    "separate-outputs": false
   },
   "wlr/taskbar": {
     "format": "{icon}",
@@ -87,8 +82,8 @@
     "format-muted": "󰝟 ",
     "format-icons": {
       "headphones": " ",
-      "handsfree": " ",
-      "headset": " ",
+      "handsfree": " ",
+      "headset": " ",
       "phone": " ",
       "portable": " ",
       "car": " ",

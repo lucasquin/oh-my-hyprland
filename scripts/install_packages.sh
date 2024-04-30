@@ -1,18 +1,22 @@
 packages=(
 	"pipewire-jack"
 	"zsh"
-	"eza"
+	"eza" # improves "ls" command
 	"hyprland"
-	"waybar"
+	"waybar" # bar
 	"neovim"
 	"vim"
 	"kitty"
-	"rofi"
+	"rofi" # menu launcher
 	"qt5-wayland"
 	"dunst"
 	"xdg-desktop-portal-hyprland"
 	"qt6-wayland"
-	"dolphin"
+	"nemo" # file manager
+	"grimblast-git" # screenshot tool
+	"slurp" # region select for screenshot/screenshare
+	"swappy" # screenshot editor
+	"cliphist" # clipboard manager
 )
 
 install_packages() {

@@ -53,3 +53,10 @@ alias :q="exit"
 
 # Golang
 export PATH=$PATH:$(go env GOPATH)/bin
+
+# bun completions
+[ -s "/home/lucasquin/.bun/_bun" ] && source "/home/lucasquin/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"

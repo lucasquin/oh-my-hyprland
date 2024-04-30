@@ -5,6 +5,7 @@ install_dotfiles() {
 		"Clone/oh-my-hyprland/configs/.config/hypr"
 		"Clone/oh-my-hyprland/configs/.config/kitty"
 		"Clone/oh-my-hyprland/configs/.config/waybar"
+    "Clone/oh-my-hyprland/configs/.config/dunst"
 		"Clone/oh-my-hyprland/configs/.config/kdeglobals"
 	)
 
